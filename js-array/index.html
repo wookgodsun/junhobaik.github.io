@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/junhobaik.github.io/component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css">.wrap{display:flex;min-height:100vh;min-width:100wh}@media screen and (max-width:680px){.wrap{flex-direction:column}}.wrap>:first-child{min-width:18em;width:18em}@media screen and (max-width:680px){.wrap>:first-child{width:100%}}.wrap>:nth-child(2){flex-grow:1}.menu{border-right:1px solid grey;display:flex;flex-direction:column;padding:2rem 1rem}@media screen and (max-width:680px){.menu{border-bottom:1px solid grey;border-right:0;flex-direction:row;padding:1rem 1rem .5rem}}.menu>.bio{align-items:center;display:flex;flex-direction:column}@media screen and (max-width:680px){.menu>.bio{flex-direction:row;flex-grow:1}}.menu>.bio .profile-name{font-size:1.2rem}@media screen and (max-width:680px){.menu>.bio .profile-name{margin-left:1rem}}.menu>.bio .profile-img img{border:1px solid #d3d3d3;border-radius:100%;height:5rem;padding:.25rem;width:5rem}@media screen and (max-width:680px){.menu>.bio .profile-img img{height:4rem;padding:.2rem;width:4rem}}@media screen and (max-width:680px){.menu>.bio .profile-msg{display:none}}.menu>.submenu{display:flex;flex-direction:column;flex-grow:1;margin-top:1rem}.menu>.submenu>a{padding:.2rem 0}@media screen and (max-width:680px){.menu>.submenu{align-content:center;align-items:center;display:flex;flex-direction:row;flex-grow:0;margin:0 2rem 0 0}.menu>.submenu>a{padding:0 .2rem}}
+
+/*# sourceMappingURL=component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css.map*/</style><title data-react-helmet="true">자바스크립트의 배열(Array) | undefined</title><meta data-react-helmet="true" name="description" content="Sample"/><meta data-react-helmet="true" name="keywords" content="sample, something"/><link as="script" rel="preload" href="/junhobaik.github.io/component---src-templates-blog-post-index-js-ae5db44960ab76cc3716.js"/><link as="script" rel="preload" href="/junhobaik.github.io/0-263ffa3453f5ec0c6f72.js"/><link as="script" rel="preload" href="/junhobaik.github.io/app-6b09623b151d73ba717b.js"/><link as="script" rel="preload" href="/junhobaik.github.io/webpack-runtime-446c1c350838906cf58d.js"/><link rel="preload" href="/junhobaik.github.io/static/d/394/path---js-array-5-ad-dc7-dfPrSdYDkLGsz1yZMMWArDo.json" as="fetch" crossOrigin="use-credentials"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="wrap"><div class="menu"><div class="bio"><div class="profile-img"><img src="/junhobaik.github.io/static/profile-ea75652a22e45c35cb0bce8841f6d9c5.png" alt="profile_photo"/></div><p class="profile-name">Junho Baik</p><div class="profile-msg"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum libero eveniet odio quaerat sit unde maxime excepturi, optio quam illum?</span></div></div><div class="submenu"><a href="/junhobaik.github.io/">Home</a><a href="/junhobaik.github.io/taglist">Tags</a><a href="/junhobaik.github.io/archive">Archive</a><a href="/junhobaik.github.io/search">Search</a></div></div><div><div class="blog-post-container"><div class="blog-post"><h1>자바스크립트의 배열(Array)</h1><h2>September 11, 2017</h2><div class="blog-post-content"><p>자바스크립트의 배열은 어떤 타입이던 담을 수 있고, 배열 크기도 미리 정하지 않는다.</p>
+<pre><code class="language-javascript">var arr = [
+  null,
+  undefined,
+  true,
+  1,
+  "array",
+  {}
+];
+
+console.log(arr); 
+// [null, undefined, true, 1, "array", [object Object]{...}]
+
+console.log(typeof arr, toString.call(arr));
+//'object', '[object Array]'
+</code></pre>
+<h3>배열에서 빈 슬롯의 주의점</h3>
+<p>배열에서 주의 해야할 점은 중간에 빈 구멍이 있는 배열을 조심해야 한다.</p>
+<pre><code class="language-javascript">var arr = [];
+arr[0] = 1;
+arr[2] = 2;
+arr[3] = undefined;
+</code></pre>
+<p>위와 같은 코드가 있을때 배열의 1번은 비어있을 것이다. 어떤 배열이 되어있을지 보면</p>
+<pre><code class="language-javascript">console.log(arr); //[1, undefined, 2, undefined]
+console.log(arr.length); // 4
+</code></pre>
+<p>위와 같이 되어있다. 비어있는 배열이 undefined가 되어있다.
+1번 undefined와 따로 선언한 undefined의 3번은 서로 같은 것인 것일까?</p>
+<pre><code class="language-javascript">console.log(arr[1] === arr[3])
+console.log(typeof arr[1] === typeof arr[3]);
+console.log(toString.call(arr[1]) === toString.call(arr[3]));
+console.log(arr[1] === undefined);
+console.log(arr[3] === undefined);
+</code></pre>
+<p>이렇게 비교를 해 보아도 모두가 <strong>true</strong> 로 일치한다고 나온다 하지만
+빈 슬롯이 undefined과 된 것과 선언으로 인해 undefined 인 것은 <strong>엄연히 다르다.</strong></p>
+<p>그 이유는 아래에서 알 수 있다.</p>
+<pre><code class="language-javascript">console.log(arr);
+[1, undefined, 2, undefined]
+
+for(index in arr){
+  console.log(index);
+}
+// 0, 2, 3
+
+var newArr = [];
+arr.forEach(function(value, index){
+  console.log("index:"+index+"/value:"+value);
+  newArr.push(value);
+})
+// "index:0/value:1"
+// "index:2/value:2"
+// "index:3/value:undefined"
+
+console.log(newArr);
+// [1, 2, undefined]
+</code></pre>
+<p>for in, forEach 등을 통해 실험을 해 본 결과이다.
+for in 에서는 index 1이 존재하지 않는 것으로 보이고,
+forEach를 통해서도 새로운 배열을 복사하는 것을 하려 했으나 1번 배열이 빠진채로 수행 된 것을 볼 수 있다.</p>
+<p>이러한 예제를 통해 빈 슬롯이 있는 배열을 다루게 된다면 조심해야한다는 것을 알 수 있다.</p>
+<h3>배열의 key/property 형태의 활용</h3>
+<p>배열 인덱스는 숫자이다. 그런데 배열도 객체이기 때문에 key/property 문자열을 추가 할 수 있다.</p>
+<pre><code class="language-javascript">var arr = [];
+
+arr[0] = 1;
+arr["two"] = 2;
+</code></pre>
+<p>조심해야할 점은 이렇게 선언할 경우 배열의 길이는 늘어나지 않는 것을 조심해야한다. 또한 배열을 출력할 경우 나타나지 않는다.</p>
+<pre><code class="language-javascript">console.log(arr); // [1]
+console.log(arr["two"]); // 2
+
+console.log(arr.length); // 1
+
+for(index in arr){
+  console.log(index);
+} // '0'
+</code></pre>
+<p>더욱 조심해야 할 점은 키로 넣은 문자열이 표준 10진수 숫자로 이루어져 있다면 아래와 같은 결과를 얻게 된다.</p>
+<pre><code class="language-javascript">arr["5"] = "five";
+console.log(arr);
+//[1, undefined, undefined, undefined, undefined, "five"]
+console.log(arr.length); // 6
+
+for(index in arr){
+  console.log(index);
+} // '0', '5', 'two'
+</code></pre>
+<p>키/프로퍼티 형태로 활용하는 것을 지양하고 이렇게 써야한다는 상황이라면 문자열 프로퍼티는 꼭 숫자가 아닌 글자만 사용하도록 하자.</p>
+<h3>유사배열</h3>
+<p>유사배열을 진짜 배열로 바꾸는 방법</p>
+<p>일반적으로 indexOf, concat, forEach 등의 배열 함수들을 사용한다,
+또한 slice를 활용한 방법도 있다</p>
+<pre><code class="language-javascript">function test(){
+  var arr = Array.prototype.slice.call( arguments );
+  return arr;
+}
+
+var a = test('a', 1);
+console.log(toString.call(a), a); 
+//"[object Array]" ["a", 1]
+</code></pre>
+<p>ES6에 와서는 유사 배열을 진짜 배열로 바꾸는 기능이 추가되었다.
+<code>Array.from()</code></p>
+<pre><code class="language-javascript">function test(){
+  var arr = Array.from( arguments );
+  return arr;
+}
+
+var a = test('a', 1);
+console.log(toString.call(a), a); 
+//"[object Array]" ["a", 1]
+</code></pre></div></div><div class="blog-post-nav"><ul><li><a rel="prev" href="/junhobaik.github.io/js-es6-proxy/">← <!-- -->자바스크립트 ES6 프록시(Proxy)</a></li><li><a rel="next" href="/junhobaik.github.io/js-variable-types/">자바스크립트의 타입들<!-- --> →</a></li></ul></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-index-js","jsonName":"js-array-5ad","path":"/js-array/"};window.dataPath="394/path---js-array-5-ad-dc7-dfPrSdYDkLGsz1yZMMWArDo";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":"/app-6b09623b151d73ba717b.js","component---src-templates-blog-post-index-js":"/component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css","component---src-templates-post-list-by-tag-index-js":"/component---src-templates-post-list-by-tag-index-js.0385fab50e3e915a48bc.css","component---src-templates-tag-list-index-js":"/component---src-templates-tag-list-index-js.33d100b92fff7c57e5a7.css","component---src-templates-archive-index-js":"/component---src-templates-archive-index-js.b07e76940148e2573111.css","component---src-pages-404-js":"/component---src-pages-404-js.718d793d3e2bff70df64.css","component---src-pages-index-js":"/component---src-pages-index-js.974321178a9aa8815276.css","component---src-pages-search-js":"/component---src-pages-search-js.718d793d3e2bff70df64.css"};/*]]>*/</script><script src="/junhobaik.github.io/webpack-runtime-446c1c350838906cf58d.js" async=""></script><script src="/junhobaik.github.io/app-6b09623b151d73ba717b.js" async=""></script><script src="/junhobaik.github.io/0-263ffa3453f5ec0c6f72.js" async=""></script><script src="/junhobaik.github.io/component---src-templates-blog-post-index-js-ae5db44960ab76cc3716.js" async=""></script></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/junhobaik.github.io/component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css">.wrap{display:flex;min-height:100vh;min-width:100wh}@media screen and (max-width:680px){.wrap{flex-direction:column}}.wrap>:first-child{min-width:18em;width:18em}@media screen and (max-width:680px){.wrap>:first-child{width:100%}}.wrap>:nth-child(2){flex-grow:1}.menu{border-right:1px solid grey;display:flex;flex-direction:column;padding:2rem 1rem}@media screen and (max-width:680px){.menu{border-bottom:1px solid grey;border-right:0;flex-direction:row;padding:1rem 1rem .5rem}}.menu>.bio{align-items:center;display:flex;flex-direction:column}@media screen and (max-width:680px){.menu>.bio{flex-direction:row;flex-grow:1}}.menu>.bio .profile-name{font-size:1.2rem}@media screen and (max-width:680px){.menu>.bio .profile-name{margin-left:1rem}}.menu>.bio .profile-img img{border:1px solid #d3d3d3;border-radius:100%;height:5rem;padding:.25rem;width:5rem}@media screen and (max-width:680px){.menu>.bio .profile-img img{height:4rem;padding:.2rem;width:4rem}}@media screen and (max-width:680px){.menu>.bio .profile-msg{display:none}}.menu>.submenu{display:flex;flex-direction:column;flex-grow:1;margin-top:1rem}.menu>.submenu>a{padding:.2rem 0}@media screen and (max-width:680px){.menu>.submenu{align-content:center;align-items:center;display:flex;flex-direction:row;flex-grow:0;margin:0 2rem 0 0}.menu>.submenu>a{padding:0 .2rem}}
+
+/*# sourceMappingURL=component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css.map*/</style><title data-react-helmet="true">Angular 시작하기 (개발 환경 구성) | undefined</title><meta data-react-helmet="true" name="description" content="Sample"/><meta data-react-helmet="true" name="keywords" content="sample, something"/><link as="script" rel="preload" href="/junhobaik.github.io/component---src-templates-blog-post-index-js-ae5db44960ab76cc3716.js"/><link as="script" rel="preload" href="/junhobaik.github.io/0-263ffa3453f5ec0c6f72.js"/><link as="script" rel="preload" href="/junhobaik.github.io/app-6b09623b151d73ba717b.js"/><link as="script" rel="preload" href="/junhobaik.github.io/webpack-runtime-446c1c350838906cf58d.js"/><link rel="preload" href="/junhobaik.github.io/static/d/561/path---angular-setup-d-69-65c-EWV8QvPeh3oeDUQRT5fkIqQz10.json" as="fetch" crossOrigin="use-credentials"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="wrap"><div class="menu"><div class="bio"><div class="profile-img"><img src="/junhobaik.github.io/static/profile-ea75652a22e45c35cb0bce8841f6d9c5.png" alt="profile_photo"/></div><p class="profile-name">Junho Baik</p><div class="profile-msg"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum libero eveniet odio quaerat sit unde maxime excepturi, optio quam illum?</span></div></div><div class="submenu"><a href="/junhobaik.github.io/">Home</a><a href="/junhobaik.github.io/taglist">Tags</a><a href="/junhobaik.github.io/archive">Archive</a><a href="/junhobaik.github.io/search">Search</a></div></div><div><div class="blog-post-container"><div class="blog-post"><h1>Angular 시작하기 (개발 환경 구성)</h1><h2>Invalid date</h2><div class="blog-post-content"><p>Angular 개발을 시작하기 전, 개발에 앞서 개발 환경 구성과 간단한 사용을 먼저 해보자.</p>
+<h2>TypeScript</h2>
+<p>Augular를 본격적으로 하기 전 TypeScript를 설치하기로 하자.</p>
+<p>타입스크립트는 동적 타입 언어인 자바스크립트에 명시적으로 타입 선언이 가능하도록 정적 타입 언어의 장점을 가지게 된 언어이다.  </p>
+<p>Angular(!= AngularJS)는 TypeScript를 베이스로 만들어졌고,<br>
+왜 앵귤러에 타입스크립트인지는 아래 링크의 글을 읽어보면 좋을 것이다.</p>
+<p><a href="https://github.com/not-for-me/til/blob/master/angular2/translations/writing_angular2_in_typescript.md">Angular: Why TypeScript</a></p>
+<h3>설치</h3>
+<p>아래 명령어를 사용하여 타입스크립트를 설치하자.</p>
+<pre><code class="language-shell">$ npm install -g typescript
+</code></pre>
+<p>글로벌 설치를 선호하지 않는다면 프로젝트내 설치하는 방법도 물론 괜찮다.</p>
+<p>글로버 설치를 했다면 이제 <code>tsc test.ts</code>와 같이 명령어로 타입스크립트를 컴파일 할 수 있다.</p>
+<p>만약 프로젝트 내 설치를 했다면 npm script에서 <code>"tsc test.ts"</code> 와 같이 스크립트를 추가하거나,
+콘솔 환경에서 <code>node_modules/.bin/tsc test.ts</code>와 같이 컴파일이 가능하다.</p>
+<p>아래 기술하는 내용들은 글로벌 설치를 전제로 설명하게 된다.</p>
+<h3>설정</h3>
+<pre><code class="language-shell">$ tsc --init
+</code></pre>
+<p>이제 프로젝트 내에서 위 명령어로 설정 파일(<code>tsconfig.json</code>)을 생성할 수 있다.</p>
+<pre><code class="language-json">{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+      ...
+</code></pre>
+<p>어떤 자바스크립트 버전으로 컴파일 할건지 등 설정 파일 안에는 다양한 설정이 가능한데 앵귤러 개발 환경 구성 포스팅이므로 자세한 설정 방법은 생략하겠다.</p>
+<h3>TSLint</h3>
+<p>추가적으로 TSLint를 사용하여 Lint 기능을 사용하는 것도 좋은 방법이다.</p>
+<p>npm으로 설치하거나, Visual Studio Code와 같이 타입스크립트와 호환이 좋은 에디터에서 TSLint를 사용하면 좀 더 판하게 개발 할 수 있다.</p>
+<h3>간단한 사용</h3>
+<p>자바스크립트를 쓰는 것과의 차이점을 위해서 매우 간단한 예제를 살펴보자.</p>
+<pre><code class="language-javascript">const n = 1;
+const s = '1';
+
+console.log(n == s);
+</code></pre>
+<p>숫자 1과 문자 1을 비교하는 (Strict 비교 아님) 코드가 있고</p>
+<p>만약 이것이 자바스크립트 파일(.js)라고 가정하면 결과는 <strong>true</strong>가 될 것이다.<br>
+그리고 이것이 타입스크립트 파일(.ts)라고 가정하면 아래와 같은 결과를 얻을 수 있다.  </p>
+<p>우선 TSLint가 <code>==</code>가 아닌 <code>===</code>를 사용하라고 알려줄 것이고,<br>
+그리고 무시하고 컴파일을 진행한다면 아래와 같은 에러가 발생한다.</p>
+<pre><code class="language-shell">error TS2365: Operator '==' cannot be applied to types '1' and '"1"'.
+</code></pre>
+<p>숫자와 문자열을 비교할 수 없다는 의미이다.</p>
+<p>클래스 등 좀 더 다양한 예제는 아래 링크에서 확인하면 좋다.</p>
+<p><a href="http://www.typescriptlang.org/play/">TypeScript PlayGround</a></p>
+<h2>Angular CLI</h2>
+<h3>설치 및 프로젝트 생성</h3>
+<p>Angular CLI를 이용해 앵귤러 개발을 시작하는 방법이다.</p>
+<pre><code class="language-shell">$ npm install @angular/cli -g
+$ ng --version
+</code></pre>
+<p><code>ng new</code> 명령어를 통해 기본적인 코드와 설정이 되어있는 앵귤러 프로젝트를 생성할 수 있다.</p>
+<pre><code class="language-shell">$ ng new auglar-start-cli
+$ cd angular-start-cli
+</code></pre>
+<h3>개발 서버</h3>
+<p>이제 이렇게 생성된 프로젝트에서 아래 명령어를 통해 로컬 개발 서버를 켤 수 있다.</p>
+<pre><code class="language-shell">$ ng serve
+** Angular Live Development Server is listening on localhost: 4200, open your browser on http://localhost:4200/ **
+</code></pre>
+<p>그리고 출력된 주소로 가서 정상적으로 출력이 되고 있는지 확인해보자.</p>
+<h3>기타 명령어</h3>
+<p>생성된 프로젝트에서 컴포넌트 및 서비스를 생성한다면 직접 하는 방법도 있지만,<br>
+Angular CLI의 기본 구조대로 뷰, 컴포넌트(or Service), 스타일, 테스트 파일을 생성해주는 명령어가 있다.</p>
+<pre><code class="language-shell"># 컴포넌트 생성
+$ ng generate component COMPONENT_NAME
+# 서비스 생성
+$ ng g service SERVICE_NAME
+# generate는 g로 줄여 사용할 수 있다.
+</code></pre>
+<p>예로 이렇게 생성된 컴포넌트는 아래와 같은 구조를 가진다</p>
+<pre><code class="language-javascript">- home
+  - home.component.html // View
+  - home.component.ts // Component
+  - home.component.spec.ts // Test
+  - home.component.css // Style
+</code></pre>
+<hr>
+<h2>References</h2>
+<ul>
+<li>서적 '앵귤러 첫걸음' 한빛소프트</li>
+<li><a href="https://angular.io/guide/quickstart">Angular official</a></li>
+</ul></div></div><div class="blog-post-nav"><ul><li><a rel="prev" href="/junhobaik.github.io/colors-module/">← <!-- -->콘솔에 색상을 입혀주는 &#x27;Colors&#x27; 모듈 사용해보기</a></li><li><a rel="next" href="/junhobaik.github.io/mac-mojave-beta/">macOS Mojave 개발자 베타 이슈, input(Checkbox, Radio) 안보임<!-- --> →</a></li></ul></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-index-js","jsonName":"angular-setup-d69","path":"/angular-setup/"};window.dataPath="561/path---angular-setup-d-69-65c-EWV8QvPeh3oeDUQRT5fkIqQz10";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":"/app-6b09623b151d73ba717b.js","component---src-templates-blog-post-index-js":"/component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css","component---src-templates-post-list-by-tag-index-js":"/component---src-templates-post-list-by-tag-index-js.0385fab50e3e915a48bc.css","component---src-templates-tag-list-index-js":"/component---src-templates-tag-list-index-js.33d100b92fff7c57e5a7.css","component---src-templates-archive-index-js":"/component---src-templates-archive-index-js.b07e76940148e2573111.css","component---src-pages-404-js":"/component---src-pages-404-js.718d793d3e2bff70df64.css","component---src-pages-index-js":"/component---src-pages-index-js.974321178a9aa8815276.css","component---src-pages-search-js":"/component---src-pages-search-js.718d793d3e2bff70df64.css"};/*]]>*/</script><script src="/junhobaik.github.io/webpack-runtime-446c1c350838906cf58d.js" async=""></script><script src="/junhobaik.github.io/app-6b09623b151d73ba717b.js" async=""></script><script src="/junhobaik.github.io/0-263ffa3453f5ec0c6f72.js" async=""></script><script src="/junhobaik.github.io/component---src-templates-blog-post-index-js-ae5db44960ab76cc3716.js" async=""></script></body></html>

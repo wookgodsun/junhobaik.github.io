@@ -1,0 +1,86 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/junhobaik.github.io/component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css">.wrap{display:flex;min-height:100vh;min-width:100wh}@media screen and (max-width:680px){.wrap{flex-direction:column}}.wrap>:first-child{min-width:18em;width:18em}@media screen and (max-width:680px){.wrap>:first-child{width:100%}}.wrap>:nth-child(2){flex-grow:1}.menu{border-right:1px solid grey;display:flex;flex-direction:column;padding:2rem 1rem}@media screen and (max-width:680px){.menu{border-bottom:1px solid grey;border-right:0;flex-direction:row;padding:1rem 1rem .5rem}}.menu>.bio{align-items:center;display:flex;flex-direction:column}@media screen and (max-width:680px){.menu>.bio{flex-direction:row;flex-grow:1}}.menu>.bio .profile-name{font-size:1.2rem}@media screen and (max-width:680px){.menu>.bio .profile-name{margin-left:1rem}}.menu>.bio .profile-img img{border:1px solid #d3d3d3;border-radius:100%;height:5rem;padding:.25rem;width:5rem}@media screen and (max-width:680px){.menu>.bio .profile-img img{height:4rem;padding:.2rem;width:4rem}}@media screen and (max-width:680px){.menu>.bio .profile-msg{display:none}}.menu>.submenu{display:flex;flex-direction:column;flex-grow:1;margin-top:1rem}.menu>.submenu>a{padding:.2rem 0}@media screen and (max-width:680px){.menu>.submenu{align-content:center;align-items:center;display:flex;flex-direction:row;flex-grow:0;margin:0 2rem 0 0}.menu>.submenu>a{padding:0 .2rem}}
+
+/*# sourceMappingURL=component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css.map*/</style><title data-react-helmet="true">자바스크립트의 숫자 타입(Number Type) | undefined</title><meta data-react-helmet="true" name="description" content="Sample"/><meta data-react-helmet="true" name="keywords" content="sample, something"/><link as="script" rel="preload" href="/junhobaik.github.io/component---src-templates-blog-post-index-js-ae5db44960ab76cc3716.js"/><link as="script" rel="preload" href="/junhobaik.github.io/0-263ffa3453f5ec0c6f72.js"/><link as="script" rel="preload" href="/junhobaik.github.io/app-6b09623b151d73ba717b.js"/><link as="script" rel="preload" href="/junhobaik.github.io/webpack-runtime-446c1c350838906cf58d.js"/><link rel="preload" href="/junhobaik.github.io/static/d/979/path---js-number-type-b-32-322-H7jQTKAolvtNqsM6WcEZYX2K4.json" as="fetch" crossOrigin="use-credentials"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="wrap"><div class="menu"><div class="bio"><div class="profile-img"><img src="/junhobaik.github.io/static/profile-ea75652a22e45c35cb0bce8841f6d9c5.png" alt="profile_photo"/></div><p class="profile-name">Junho Baik</p><div class="profile-msg"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum libero eveniet odio quaerat sit unde maxime excepturi, optio quam illum?</span></div></div><div class="submenu"><a href="/junhobaik.github.io/">Home</a><a href="/junhobaik.github.io/taglist">Tags</a><a href="/junhobaik.github.io/archive">Archive</a><a href="/junhobaik.github.io/search">Search</a></div></div><div><div class="blog-post-container"><div class="blog-post"><h1>자바스크립트의 숫자 타입(Number Type)</h1><h2>October 16, 2017</h2><div class="blog-post-content"><p>Javascript는 Java와 달리 int, double 같은 숫자 타입이 나눠져있지 않다.<br>
+number 하나로 정수(Integer)와 부동 소수점 수를 모두 표현한다.</p>
+<h3>숫자 리터럴</h3>
+<pre><code class="language-javascript">var n = 12 //12
+n = 12. //12
+n = 12.0 //12
+n = 12.300 //12.3
+n = 0.12 //0.12
+n = .12 //0.12
+</code></pre>
+<p>.12, 12. 과 같은 방식은 틀린 것은 아니더라도 좋은 코드라고 하긴 어려울 것이다.</p>
+<h3>Number Methods</h3>
+<h4>- Number.isInteger()</h4>
+<p>정수인지 확인할 수 있는 메서드.</p>
+<pre><code class="language-javascript">var n = 12;
+Number.isInteger(n); // true
+n = .12;
+Number.isInteger(n); // false
+</code></pre>
+<h4>- Number.isSafeInteger()   <strong>/*ES6*/</strong></h4>
+<p>안전한 정수값인 <code>-(253 - 1)</code> 부터 <code>253 - 1</code> 사이의 정수 값인지 확인하는 메서드, ES6에서 출현하였다.</p>
+<pre><code class="language-javascript">Number.isSafeInteger(100);                    // true
+Number.isSafeInteger(Math.pow(2, 53));      // false
+Number.isSafeInteger(Math.pow(2, 53) - 1);  // true
+</code></pre>
+<h4>- Number.toFixed()</h4>
+<p>인자로 넘긴 수 만큼의 소수점 이하를 반올림하여 문자열 형태로 반환하는 메서드.</p>
+<pre><code class="language-javascript">var n = 12.39;
+n.toFixed(0); //"12"
+n.toFixed(1); //"12.4"
+n.toFixed(2); //"12.39"
+n.toFixed(3); //"12.390"
+</code></pre>
+<h4>- Number.toPrecision()</h4>
+<p>수의 길이를 제한하여 문자열로 반환한다.</p>
+<pre><code class="language-javascript">var n = 12.39;
+n.toPrecision() //"12.39"
+n.toPrecision(1) //"1e+1"
+n.toPrecision(2) //"12"
+n.toPrecision(3) //"12.4"
+n.toPrecision(4) //"12.39"
+</code></pre>
+<h4>- Number.toExponential()</h4>
+<p>수를 지수표현식 문자열으로 반환한다.</p>
+<pre><code class="language-javascript">var n = 10000000000;
+n; // 10000000000
+n.toExponential(); //"1e+10"
+</code></pre>
+<hr>
+<h3>0.5 === 0.2 + 0.3 // false ??</h3>
+<p>Java나 타 언어를 배워봤다면 한번은 봤을만한 질문이다. </p>
+<p>0.5와 같은 부동 소수점 수는 결국 프로그래밍 언어에서는 0.5000000001과 같이 0.5와 가까운 수이기 때문이라는 것인데...</p>
+<p>Javascript에서는 어떨까?</p>
+<p>아래는 크롬 브라우저(2017.10 최신버전)의 콘솔창 결과이다.</p>
+<pre><code class="language-javascript">0.0000005 === 0.0000002 + 0.0000003;
+true
+0.000005 === 0.000002 + 0.000003;
+false
+0.00005 === 0.00002 + 0.00003;
+true
+0.0005 === 0.0002 + 0.0003;
+true
+0.005 === 0.002 + 0.003;
+true
+0.05 === 0.02 + 0.03;
+true
+0.5 === 0.2 + 0.3;
+true
+
+0.1 + 0.2 === 0.3
+false
+
+1.2 - 1 
+0.19999999999999996
+1.5 - 0.5
+1
+</code></pre>
+<p>모두 true 이길 바라지만 결과는 그렇지 않다. 더 어려운 것은 모두 false도 아니라는 것이다.</p>
+<p>어떤 것은 true이고 어떤 것은 false인 이러한 이유는 아직까지 정확하게 찾지 못했지만 부동 소수점 수의 계산에 있어 조심해야한다는 것을 알 수 있다.</p>
+<h5>해결 방법</h5>
+<pre><code class="language-javascript">(1.2 - 1).toFixed(1) * 1 // 0.2
+(1.1000001 - 1).toFixed(7) * 1 // 0.1000001
+</code></pre>
+<p>Number의 메서드를 사용하여 위와 같은 방법으로 해결하는 방법도 있다.</p></div></div><div class="blog-post-nav"><ul><li><a rel="prev" href="/junhobaik.github.io/js-es6-set-map/">← <!-- -->자바스크립트 ES6 Set, WeakSet / Map, WeakMap</a></li><li><a rel="next" href="/junhobaik.github.io/js-semicolon-asi/">자바스크립트에서 세미콜론(;)을 안써도 될까?<!-- --> →</a></li></ul></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-index-js","jsonName":"js-number-type-b32","path":"/js-number-type/"};window.dataPath="979/path---js-number-type-b-32-322-H7jQTKAolvtNqsM6WcEZYX2K4";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":"/app-6b09623b151d73ba717b.js","component---src-templates-blog-post-index-js":"/component---src-templates-blog-post-index-js.718d793d3e2bff70df64.css","component---src-templates-post-list-by-tag-index-js":"/component---src-templates-post-list-by-tag-index-js.0385fab50e3e915a48bc.css","component---src-templates-tag-list-index-js":"/component---src-templates-tag-list-index-js.33d100b92fff7c57e5a7.css","component---src-templates-archive-index-js":"/component---src-templates-archive-index-js.b07e76940148e2573111.css","component---src-pages-404-js":"/component---src-pages-404-js.718d793d3e2bff70df64.css","component---src-pages-index-js":"/component---src-pages-index-js.974321178a9aa8815276.css","component---src-pages-search-js":"/component---src-pages-search-js.718d793d3e2bff70df64.css"};/*]]>*/</script><script src="/junhobaik.github.io/webpack-runtime-446c1c350838906cf58d.js" async=""></script><script src="/junhobaik.github.io/app-6b09623b151d73ba717b.js" async=""></script><script src="/junhobaik.github.io/0-263ffa3453f5ec0c6f72.js" async=""></script><script src="/junhobaik.github.io/component---src-templates-blog-post-index-js-ae5db44960ab76cc3716.js" async=""></script></body></html>

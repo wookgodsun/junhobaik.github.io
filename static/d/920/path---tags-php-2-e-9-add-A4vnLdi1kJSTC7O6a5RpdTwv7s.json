@@ -1,0 +1,1 @@
+{"data":{"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"excerpt":"Cookie 클라이언트(브라우저)에 데이터를 저장한다. setCookie(Key_String, Value_String) $_COOKIE 위 코드의 문제점 위 코드가 HTML 코드 안에 포함되어있다면  Warning: Cannot modify…","fields":{"slug":"/php-cookie-session/"},"frontmatter":{"date":"06 November, 2017","title":"PHP Cookie, Session","tags":["php"]}}}]}},"pageContext":{"tag":"php"}}
